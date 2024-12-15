@@ -8,7 +8,7 @@ import streamlit as st
 loaded_model = pickle.load(open('model.sav', 'rb'))
 
 # Function for movie recommendations
-def diabetes_prediction(movie_name):
+def movies_prediction(movie_name):
     movies_data = pd.read_csv('movies.csv')
     list_of_all_titles = movies_data['title'].tolist()
     find_close_match = difflib.get_close_matches(movie_name, list_of_all_titles)
@@ -83,7 +83,7 @@ def main():
     if st.button('🔍 Recommend Movies'):
         if movie_name.strip():
             with st.spinner("Fetching recommendations..."):
-                recommendations, message = diabetes_prediction(movie_name)
+                recommendations, message = movies_prediction(movie_name)
                 st.markdown(message)
                 
                 if recommendations:
